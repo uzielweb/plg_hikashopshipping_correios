@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="1.0.1" type="plugin" group="hikashopshipping" method="upgrade">
-    <name>Hikashop CorreiosBR Shipping Plugin</name>
-    <creationDate>{__DAY__} {__MONTH__} {__YEAR__}</creationDate>
-    <version>{__PLUGIN_VERSION__}</version>
-    <author>Airton Torres</author>
-    <authorEmail>airtontorres@googlemail.com</authorEmail>
-    <authorUrl>http://www.alphahost.net.br</authorUrl>
-    <copyright>Copyright (C) 2014 Airton Torres. All rights reserved.</copyright>
-    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2</license>
-    <description>This plugin enables you to setup handle Brazilian Postal Service (Correios) Rate Quotes</description>
-    <files>
-        <filename plugin="correios">correios.php</filename>
-    </files>
-    <languages>
-        <language tag="en-GB">en-GB.plg_hikashop.ini</language>
-        <language tag="en-GB">en-GB.plg_hikashop.sys.ini</language>
-        <language tag="pt-BR">pt-BR.plg_hikashop.ini</language>
-        <language tag="pt-BR">pt-BR.plg_hikashop.sys.ini</language>
-    </languages>
-    <params addpath="/components/com_hikashop/params">
-        <param name="pluginoptions" type="pluginoptions" default="plugin" label="hikashop" description="HikaShop options" />
-    </params>
+<extension type="plugin" version="2.5" method="upgrade" group="hikashopshipping">
+	<name>Hikashop CorreiosBR Shipping Plugin</name>
+	<creationDate>March/2014</creationDate>
+	<version>1.0.0</version>
+	<author>OmniaWeb</author>
+	<authorEmail>omniaweb@alphahost.net.br</authorEmail>
+	<authorUrl>http://omniaweb.alphahost.net.br</authorUrl>
+	<copyright>(C) 2014 OmniaWeb. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<description>This plugin enables you to setup handle UPS service</description>
+	<files>
+		<filename plugin="correios">correios.php</filename>
+		<filename>correios_configuration.php</filename>
+	</files>
+	<media folder="media" destination="com_hikashop">
+		<folder>images</folder>
+	</media>
+	<params addpath="/components/com_hikashop/params">
+	</params>
 </extension>
