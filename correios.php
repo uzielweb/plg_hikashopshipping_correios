@@ -71,6 +71,14 @@ class plgHikashopshippingCorreios extends hikashopShippingPlugin
 	var $doc_form = 'correios';
 
 	public $nbpackage = 0;
+	/*public function __construct(){
+		$lang = JFactory::getLanguage();
+		$extension = 'plg_hikashopshipping_correios';
+		$base_dir = JPATH_SITE;
+		$language_tag = null;
+		$reload = true;
+		$lang->load($extension, $base_dir, $language_tag, $reload);
+	}*/
 	function shippingMethods(&$main){
 		$methods = array();
 		if(!empty($main->shipping_params->methodsList)){
@@ -94,6 +102,13 @@ class plgHikashopshippingCorreios extends hikashopShippingPlugin
 	}
 
 	function onShippingDisplay(&$order,&$dbrates,&$usable_rates,&$messages){
+		$lang = JFactory::getLanguage();
+		$extension = 'plg_hikashopshipping_correios';
+		$base_dir = JPATH_SITE.'/plugins/hikashopshipping/correios';
+		$language_tag = null;
+		$reload = true;
+		$lang->load($extension, $base_dir, $language_tag, $reload);
+
 		if(!hikashop_loadUser())
 			return false;
 		$local_usable_rates = array();
@@ -197,13 +212,18 @@ class plgHikashopshippingCorreios extends hikashopShippingPlugin
 					$local_usable_rates[$i]->shipping_id .= '-' . $selected_method;
 				if($method['delivery_day']!=-1){
 					$local_usable_rates[$i]->shipping_description.=' '.JText::sprintf( 'ESTIMATED_TIME_AFTER_SEND', $method['delivery_day']);
-				}else{
-					$local_usable_rates[$i]->shipping_description.=' '.JText::_( 'NO_ESTIMATED_TIME_AFTER_SEND');
 				}
-				if($method['delivery_time']!=-1){
-					$local_usable_rates[$i]->shipping_description.='<br/>'.JText::sprintf( 'DELIVERY_HOUR', $method['delivery_time']);
-				}else{
-					$local_usable_rates[$i]->shipping_description.='<br/>'.JText::_( 'NO_DELIVERY_HOUR');
+				if($method['homeDelivery']==='S'){
+					$local_usable_rates[$i]->shipping_description.='<br/>'.JText::sprintf( 'HOME_DELIVERY', JText::_('WORD_YES'));
+				}
+				else{
+					$local_usable_rates[$i]->shipping_description.='<br/>'.JText::sprintf( 'HOME_DELIVERY', JText::_('WORD_NO'));
+				}
+				if($method['saturdayDelivery']==='S'){
+					$local_usable_rates[$i]->shipping_description.='<br/>'.JText::sprintf( 'SATURDAY_DELIVERY', JText::_('WORD_YES'));
+				}
+				else{
+					$local_usable_rates[$i]->shipping_description.='<br/>'.JText::sprintf( 'SATURDAY_DELIVERY', JText::_('WORD_NO'));
 				}
 				if($rate->shipping_params->group_package && $this->nbpackage>1) $local_usable_rates[$i]->shipping_description.='<br/>'.JText::sprintf('X_PACKAGES', $this->nbpackage);
 				$i++;

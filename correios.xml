@@ -12,6 +12,7 @@
 	<files>
 		<filename plugin="correios">correios.php</filename>
 		<filename>correios_configuration.php</filename>
+		<folder>language</folder>
 	</files>
 	<media folder="media" destination="com_hikashop">
 		<folder>images</folder>
